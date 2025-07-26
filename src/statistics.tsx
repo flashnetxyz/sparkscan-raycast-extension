@@ -18,6 +18,9 @@ export default function Command() {
   const [network, setNetwork] = useState("MAINNET");
 
   const { data, isLoading } = useFetch(`https://api.sparkscan.io/v1/stats/summary?network=${network}`, {
+    headers: {
+      "User-Agent": "sparkscan-raycast-extension",
+    },
     mapResult(res: Result) {
       if ("detail" in res) throw new Error("Failed to fetch statistics");
 
