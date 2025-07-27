@@ -1,4 +1,5 @@
-import { Action, ActionPanel, List, getPreferenceValues, Icon } from "@raycast/api";
+import os from "node:os";
+import { Action, ActionPanel, List, getPreferenceValues, Icon, environment } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
 import { useState } from "react";
 import { capitalize, formatTimestamp, getTypeLabel, truncateKey } from "./lib/utils";
@@ -187,7 +188,7 @@ export default function Command() {
       })}`,
     {
       headers: {
-        "User-Agent": "sparkscan-raycast-extension",
+        "User-Agent": `Sparkscan Extension, Raycast/${environment.raycastVersion} (${os.type()} ${os.release()})`,
       },
       mapResult(res: Result) {
         // If the API returns an error shape, surface it immediately

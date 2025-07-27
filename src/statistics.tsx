@@ -1,5 +1,6 @@
+import os from "node:os";
 import { useState } from "react";
-import { getPreferenceValues, Icon, List } from "@raycast/api";
+import { getPreferenceValues, Icon, List, environment } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
 
 interface Preferences {
@@ -27,7 +28,7 @@ export default function Command() {
     `https://api.sparkscan.io/v1/stats/summary?${new URLSearchParams({ network: network.toUpperCase() })}`,
     {
       headers: {
-        "User-Agent": "sparkscan-raycast-extension",
+        "User-Agent": `Sparkscan Extension, Raycast/${environment.raycastVersion} (${os.type()} ${os.release()})`,
       },
       mapResult(res: Result) {
         if ("detail" in res) throw new Error("Failed to fetch statistics");
