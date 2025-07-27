@@ -158,7 +158,7 @@ const getMempoolBaseUrl = (network: string) => {
 };
 
 // Remove hyphens from Spark transaction IDs so they match Sparkscan routing
-const removeHyphens = (id: string) => id.replace(/-/g, "");
+const removeHyphens = (id: string) => id.replaceAll("-", "");
 
 // Build the URL that should be opened when the user selects a transaction
 const getTransactionUrl = (tx: Tx, network: string) => {

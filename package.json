@@ -8,6 +8,10 @@
   "owner": "flashnet",
   "access": "public",
   "license": "MIT",
+  "platforms": [
+    "macOS",
+    "Windows"
+  ],
   "categories": [
     "Web",
     "Finance",
