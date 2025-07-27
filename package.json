@@ -7,6 +7,21 @@
   "author": "nejc",
   "owner": "flashnet",
   "license": "MIT",
+  "categories": [
+    "Web",
+    "Finance",
+    "Developer Tools",
+    "Data",
+    "Other"
+  ],
+  "keywords": [
+    "sparkscan",
+    "bitcoin",
+    "spark",
+    "lightning",
+    "blockchain",
+    "crypto"
+  ],
   "commands": [
     {
       "name": "statistics",
