@@ -1,4 +1,4 @@
-import { Action, ActionPanel, List, open, getPreferenceValues } from "@raycast/api";
+import { Action, ActionPanel, List, open, getPreferenceValues, Icon } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
 import { useState } from "react";
 import { capitalize, formatTimestamp, getTypeLabel, truncateKey } from "./lib/utils";
@@ -208,17 +208,36 @@ export default function Command() {
             ]}
             actions={
               <ActionPanel>
-                <Action title="Open in Browser" onAction={() => open(getTransactionUrl(txForUrl, network.toUpperCase()))} />
+                <Action
+                  title="Open in Browser"
+                  onAction={() => open(getTransactionUrl(txForUrl, network.toUpperCase()))}
+                />
               </ActionPanel>
             }
             detail={
               <List.Item.Detail
                 metadata={
                   <List.Item.Detail.Metadata>
-                    <List.Item.Detail.Metadata.Label title="Type" text={getTypeLabel(txItem.type)} />
-                    <List.Item.Detail.Metadata.Label title="Status" text={capitalize(txItem.status)} />
-                    <List.Item.Detail.Metadata.Label title="Timestamp" text={formatTimestamp(txItem.createdAt)} />
-                    <List.Item.Detail.Metadata.Label title="Value" text={`$${txItem.valueUsd.toLocaleString()} USD`} />
+                    <List.Item.Detail.Metadata.Label
+                      title="Type"
+                      text={getTypeLabel(txItem.type)}
+                      icon={Icon.ArrowRight}
+                    />
+                    <List.Item.Detail.Metadata.Label
+                      title="Status"
+                      text={capitalize(txItem.status)}
+                      icon={Icon.Checkmark}
+                    />
+                    <List.Item.Detail.Metadata.Label
+                      title="Timestamp"
+                      text={formatTimestamp(txItem.createdAt)}
+                      icon={Icon.Clock}
+                    />
+                    <List.Item.Detail.Metadata.Label
+                      title="Value"
+                      text={`$${txItem.valueUsd.toLocaleString()}`}
+                      icon={Icon.Coins}
+                    />
                   </List.Item.Detail.Metadata>
                 }
               />
