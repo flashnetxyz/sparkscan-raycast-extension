@@ -22,11 +22,52 @@
     "blockchain",
     "crypto"
   ],
+  "preferences": [
+    {
+      "name": "defaultNetwork",
+      "title": "Default Network",
+      "description": "The default network to use",
+      "type": "dropdown",
+      "required": false,
+      "default": "mainnet",
+      "data": [
+        {
+          "title": "Mainnet",
+          "value": "MAINNET"
+        },
+        {
+          "title": "Regtest",
+          "value": "REGTEST"
+        }
+      ]
+    },
+    {
+      "name": "transactionLimit",
+      "title": "Transaction Limit",
+      "description": "The number of transactions to show in the latest transactions list",
+      "type": "textfield",
+      "required": false,
+      "placeholder": "25",
+      "default": "25"
+    }
+  ],
   "commands": [
     {
       "name": "statistics",
       "title": "Statistics",
       "description": "View statistics for the selected network",
+      "mode": "view"
+    },
+    {
+      "name": "open-in-sparkscan",
+      "title": "Open in Sparkscan",
+      "description": "Open the copied address in Sparkscan",
+      "mode": "no-view"
+    },
+    {
+      "name": "latest-transactions",
+      "title": "Latest Transactions",
+      "description": "View the latest transactions on the selected network",
       "mode": "view"
     }
   ],

@@ -1,6 +1,10 @@
-import { useState } from "react";
-import { Icon, List } from "@raycast/api";
-import { useFetch } from "@raycast/utils";
+import { useState } from 'react';
+import { getPreferenceValues, Icon, List } from '@raycast/api';
+import { useFetch } from '@raycast/utils';
+
+interface Preferences {
+  defaultNetwork: 'MAINNET' | 'REGTEST';
+}
 
 type Result =
   | {
@@ -15,20 +19,25 @@ type Result =
     };
 
 export default function Command() {
-  const [network, setNetwork] = useState("MAINNET");
+  const preferences = getPreferenceValues<Preferences>();
 
-  const { data, isLoading } = useFetch(`https://api.sparkscan.io/v1/stats/summary?network=${network}`, {
-    headers: {
-      "User-Agent": "sparkscan-raycast-extension",
-    },
-    mapResult(res: Result) {
-      if ("detail" in res) throw new Error("Failed to fetch statistics");
+  const [network, setNetwork] = useState<'MAINNET' | 'REGTEST'>(preferences.defaultNetwork);
 
-      return {
-        data: res,
-      };
-    },
-  });
+  const { data, isLoading } = useFetch(
+    `https://api.sparkscan.io/v1/stats/summary?${new URLSearchParams({ network: network.toUpperCase() })}`,
+    {
+      headers: {
+        'User-Agent': 'sparkscan-raycast-extension',
+      },
+      mapResult(res: Result) {
+        if ('detail' in res) throw new Error('Failed to fetch statistics');
+
+        return {
+          data: res,
+        };
+      },
+    }
+  );
 
   return (
     <List
@@ -36,12 +45,12 @@ export default function Command() {
         <List.Dropdown
           tooltip="Grid Item Size"
           storeValue
-          onChange={(newValue) => {
-            setNetwork(newValue);
+          onChange={(network) => {
+            setNetwork(network as 'MAINNET' | 'REGTEST');
           }}
         >
-          <List.Dropdown.Item title="Mainnet" value={"MAINNET"} />
-          <List.Dropdown.Item title="Regtest" value={"REGTEST"} />
+          <List.Dropdown.Item title="Mainnet" value={'MAINNET'} />
+          <List.Dropdown.Item title="Regtest" value={'REGTEST'} />
         </List.Dropdown>
       }
     >
@@ -49,7 +58,9 @@ export default function Command() {
         <>
           <List.Item
             title="Total Value Locked (USD)"
-            accessories={[{ text: `$${data.totalValueLockedUsd.toLocaleString()}`, icon: Icon.Coins }]}
+            accessories={[
+              { text: `$${data.totalValueLockedUsd.toLocaleString()}`, icon: Icon.Coins },
+            ]}
           />
           <List.Item
             title="Active Accounts"
@@ -61,7 +72,9 @@ export default function Command() {
           />
           <List.Item
             title="Current BTC Price (USD)"
-            accessories={[{ text: `$${data.currentBtcPriceUsd.toLocaleString()}`, icon: Icon.Coins }]}
+            accessories={[
+              { text: `$${data.currentBtcPriceUsd.toLocaleString()}`, icon: Icon.Coins },
+            ]}
           />
         </>
       )}
