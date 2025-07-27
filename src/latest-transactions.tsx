@@ -3,6 +3,7 @@ import { Action, ActionPanel, List, getPreferenceValues, Icon, environment } fro
 import { useFetch } from "@raycast/utils";
 import { useState } from "react";
 import { capitalize, formatTimestamp, getTypeLabel, truncateKey } from "./lib/utils";
+import { addRaycastUTM } from "./lib/url";
 
 interface Preferences {
   transactionLimit: string;
@@ -238,10 +239,10 @@ export default function Command() {
             keywords={[...getSenderAndRecipientAddresses(item), item.id, ...getTokenSenderAndRecipientKeywords(item)]}
             actions={
               <ActionPanel>
-                <Action.OpenInBrowser url={getTransactionUrl(item, network.toUpperCase())} />
+                <Action.OpenInBrowser url={addRaycastUTM(getTransactionUrl(item, network.toUpperCase()))} />
                 <Action.CopyToClipboard
                   shortcut={{ modifiers: ["cmd"], key: "c" }}
-                  content={getTransactionUrl(item, network.toUpperCase())}
+                  content={addRaycastUTM(getTransactionUrl(item, network.toUpperCase()))}
                 />
               </ActionPanel>
             }

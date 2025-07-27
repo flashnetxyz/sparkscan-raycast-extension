@@ -1,4 +1,5 @@
 import { showHUD, Clipboard, open } from "@raycast/api";
+import { addRaycastUTM } from "./lib/url";
 
 // Regular expressions taken from the sparkscan SearchInput implementation
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -49,16 +50,16 @@ export default async function main() {
 
   switch (addressType) {
     case "SPARK_ADDRESS":
-      await open(`https://sparkscan.io/address/${clipboard}`);
+      await open(addRaycastUTM(`https://sparkscan.io/address/${clipboard}`));
       break;
     case "TXID":
-      await open(`https://sparkscan.io/tx/${clipboard}`);
+      await open(addRaycastUTM(`https://sparkscan.io/tx/${clipboard}`));
       break;
     case "TOKEN_ADDRESS":
       if (clipboard.toLowerCase().startsWith("btknrt1")) {
-        await open(`https://sparkscan.io/token/${clipboard}?network=REGTEST`);
+        await open(addRaycastUTM(`https://sparkscan.io/token/${clipboard}?network=REGTEST`));
       } else {
-        await open(`https://sparkscan.io/token/${clipboard}`);
+        await open(addRaycastUTM(`https://sparkscan.io/token/${clipboard}`));
       }
       break;
     default:
