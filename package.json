@@ -1,11 +1,12 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "sparkscan",
-  "title": "Sparkscan",
+  "title": "Sparkscan Search",
   "description": "Search and explore the Spark network",
   "icon": "extension-icon.png",
   "author": "nejc",
   "owner": "flashnet",
+  "access": "public",
   "license": "MIT",
   "categories": [
     "Web",
@@ -54,7 +55,7 @@
   "commands": [
     {
       "name": "statistics",
-      "title": "Statistics",
+      "title": "View statistics",
       "description": "View statistics for the selected network",
       "mode": "view"
     },
@@ -66,7 +67,7 @@
     },
     {
       "name": "latest-transactions",
-      "title": "Latest Transactions",
+      "title": "View Latest Transactions",
       "description": "View the latest transactions on the selected network",
       "mode": "view"
     }
