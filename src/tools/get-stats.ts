@@ -1,5 +1,8 @@
-import os from "node:os";
-import { environment, getPreferenceValues } from "@raycast/api";
+import { getPreferenceValues } from "@raycast/api";
+
+import type { GetNetworkStatsV1StatsSummaryGetQuery } from "@sparkscan/api-types";
+
+import { BASE_HEADERS } from "../lib/constants";
 
 interface Input {
   /**
@@ -12,17 +15,7 @@ interface Preferences {
   defaultNetwork: "MAINNET" | "REGTEST";
 }
 
-type Result =
-  | {
-      totalValueLockedSats: number;
-      totalValueLockedUsd: number;
-      activeAccounts: number;
-      transactions24h: number;
-      currentBtcPriceUsd: number;
-    }
-  | {
-      detail: unknown[];
-    };
+type Result = GetNetworkStatsV1StatsSummaryGetQuery["Response"] | GetNetworkStatsV1StatsSummaryGetQuery["Errors"];
 
 export default async function tool(input: Input) {
   const preferences = getPreferenceValues<Preferences>();
@@ -33,7 +26,7 @@ export default async function tool(input: Input) {
     `https://api.sparkscan.io/v1/stats/summary?${new URLSearchParams({ network: network.toUpperCase() })}`,
     {
       headers: {
-        "User-Agent": `Sparkscan Extension, Raycast/${environment.raycastVersion} (${os.type()} ${os.release()})`,
+        ...BASE_HEADERS,
       },
     },
   );
@@ -42,12 +35,13 @@ export default async function tool(input: Input) {
     throw new Error(response.statusText);
   }
 
-  const data = (await response.json()) as Result;
+  const result = (await response.json()) as Result;
 
-  if ("detail" in data) {
-    console.error("Failed to fetch statistics:", data.detail);
+  if ("detail" in result) {
+    console.error("Failed to fetch statistics:", result.detail);
     throw new Error("Failed to fetch statistics");
   }
+  const data = result as GetNetworkStatsV1StatsSummaryGetQuery["Response"];
 
   return {
     totalValueLockedSats: data?.totalValueLockedSats,

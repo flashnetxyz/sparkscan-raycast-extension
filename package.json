@@ -34,7 +34,7 @@
       "description": "The default network to use",
       "type": "dropdown",
       "required": false,
-      "default": "mainnet",
+      "default": "MAINNET",
       "data": [
         {
           "title": "Mainnet",
@@ -98,6 +98,7 @@
   },
   "devDependencies": {
     "@raycast/eslint-config": "^2.0.4",
+    "@sparkscan/api-types": "^0.1.6",
     "@types/node": "22.13.10",
     "@types/react": "19.0.10",
     "eslint": "^9.22.0",

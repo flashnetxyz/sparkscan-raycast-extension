@@ -5,7 +5,7 @@ const UUID_NO_HYPHENS_PATTERN = /^[0-9a-f]{32}$/i;
 const TXID_64_CHAR_PATTERN = /^[0-9a-f]{64}$/i;
 
 export class TransactionMatch extends Match {
-  public match() {
+  public match(): boolean {
     const trimmed = this.search.trim();
     if (!trimmed) return false;
 

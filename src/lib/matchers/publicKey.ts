@@ -3,7 +3,7 @@ import { Match } from "./_base";
 const PUBLIC_KEY_PATTERN = /^(02|03)[0-9a-fA-F]{64}$/;
 
 export class PublicKeyMatch extends Match {
-  public match() {
+  public match(): boolean {
     const trimmed = this.search.trim();
     if (!trimmed) return false;
 

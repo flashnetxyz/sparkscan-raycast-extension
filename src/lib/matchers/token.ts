@@ -1,7 +1,7 @@
 import { Match } from "./_base";
 
 export class TokenMatch extends Match {
-  public match() {
+  public match(): boolean {
     const trimmed = this.search.trim();
     if (!trimmed) return false;
 

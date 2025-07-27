@@ -1,6 +1,7 @@
-import { showHUD, Clipboard, open } from "@raycast/api";
-import { addRaycastUTM } from "./lib/url";
+import { Clipboard, open, showHUD } from "@raycast/api";
+
 import { SparkAddressMatch, TokenMatch, TransactionMatch, type Matchers } from "./lib/matchers";
+import { addRaycastUTM } from "./lib/url";
 
 const matchSearch = (search: string, network: "MAINNET" | "REGTEST"): Matchers => {
   const matchers = [
@@ -22,5 +23,5 @@ export default async function main() {
   }
 
   const path = addressType[0].path;
-  await open(addRaycastUTM(path));
+  await open(addRaycastUTM(path, "open-in-sparkscan"));
 }
