@@ -77,11 +77,6 @@
       "name": "get-stats",
       "title": "Get Spark Network Statistics",
       "description": "Get the latest statistics for the Spark network"
-    },
-    {
-      "name": "get-transactions",
-      "title": "Get Transactions",
-      "description": "Get the latest transactions for the Spark network"
     }
   ],
   "ai": {
