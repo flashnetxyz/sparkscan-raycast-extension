@@ -8,6 +8,7 @@ import { addRaycastUTM } from "./lib/url";
 interface Preferences {
   transactionLimit: string;
   defaultNetwork: "MAINNET" | "REGTEST";
+  defaultDetails: boolean;
 }
 
 type Tx = {
@@ -179,6 +180,7 @@ export default function Command() {
   const preferences = getPreferenceValues<Preferences>();
 
   const [network, setNetwork] = useState<"MAINNET" | "REGTEST">(preferences.defaultNetwork);
+  const [details, setDetails] = useState<boolean>(preferences.defaultDetails);
 
   const { data, pagination, isLoading } = useFetch(
     (options) =>
@@ -209,7 +211,7 @@ export default function Command() {
   return (
     <List
       isLoading={isLoading}
-      isShowingDetail={true}
+      isShowingDetail={details}
       navigationTitle="Latest transactions"
       searchBarPlaceholder="Search by Address / Transaction ID / Token"
       searchBarAccessory={
@@ -243,6 +245,12 @@ export default function Command() {
                 <Action.CopyToClipboard
                   shortcut={{ modifiers: ["cmd"], key: "c" }}
                   content={addRaycastUTM(getTransactionUrl(item, network.toUpperCase()))}
+                />
+                <Action
+                  title={details ? "Hide Details" : "Show Details"}
+                  shortcut={{ modifiers: ["cmd"], key: "d" }}
+                  icon={Icon.Info}
+                  onAction={() => setDetails(!details)}
                 />
               </ActionPanel>
             }

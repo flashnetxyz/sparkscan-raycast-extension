@@ -54,6 +54,15 @@
       "required": false,
       "placeholder": "25",
       "default": "25"
+    },
+    {
+      "name": "defaultDetails",
+      "title": "Default Details",
+      "label": "Show Details",
+      "description": "Whether to show details by default in the latest transactions list",
+      "type": "checkbox",
+      "required": false,
+      "default": false
     }
   ],
   "commands": [
