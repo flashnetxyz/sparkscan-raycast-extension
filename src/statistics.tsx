@@ -5,11 +5,8 @@ import type { GetNetworkStatsV1StatsSummaryGetQuery } from "@sparkscan/api-types
 import { useState } from "react";
 
 import { BASE_HEADERS } from "./lib/constants";
+import type { Preferences } from "./lib/preferences";
 import { addRaycastUTM } from "./lib/url";
-
-interface Preferences {
-  defaultNetwork: "MAINNET" | "REGTEST";
-}
 
 type Result = GetNetworkStatsV1StatsSummaryGetQuery["Response"] | GetNetworkStatsV1StatsSummaryGetQuery["Errors"];
 

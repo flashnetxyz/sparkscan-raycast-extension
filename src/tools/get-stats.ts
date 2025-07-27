@@ -3,16 +3,13 @@ import { getPreferenceValues } from "@raycast/api";
 import type { GetNetworkStatsV1StatsSummaryGetQuery } from "@sparkscan/api-types";
 
 import { BASE_HEADERS } from "../lib/constants";
+import type { Preferences } from "../lib/preferences";
 
 interface Input {
   /**
    * The network to get the stats for.
    */
   network?: "MAINNET" | "REGTEST";
-}
-
-interface Preferences {
-  defaultNetwork: "MAINNET" | "REGTEST";
 }
 
 type Result = GetNetworkStatsV1StatsSummaryGetQuery["Response"] | GetNetworkStatsV1StatsSummaryGetQuery["Errors"];

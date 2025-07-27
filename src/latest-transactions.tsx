@@ -5,14 +5,9 @@ import type { GetLatestTransactionsV1TxLatestGetQuery, LatestNetworkTransactionI
 import { useState } from "react";
 
 import { BASE_HEADERS } from "./lib/constants";
+import type { Preferences } from "./lib/preferences";
 import { addRaycastUTM } from "./lib/url";
 import { capitalize, formatTimestamp, getTypeLabel, truncateKey } from "./lib/utils";
-
-interface Preferences {
-  transactionLimit: string;
-  defaultNetwork: "MAINNET" | "REGTEST";
-  defaultDetails: boolean;
-}
 
 type Result = GetLatestTransactionsV1TxLatestGetQuery["Response"] | GetLatestTransactionsV1TxLatestGetQuery["Errors"];
 

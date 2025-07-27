@@ -9,8 +9,8 @@ const matchSearch = (search: string, network: "MAINNET" | "REGTEST"): Matchers =
     new TransactionMatch(search, network),
     new TokenMatch(search, network),
   ];
-  const matchedMatchers = matchers.filter((matcher) => matcher.match());
-  return matchedMatchers;
+
+  return matchers.filter((matcher) => matcher.match());
 };
 
 export default async function main() {
