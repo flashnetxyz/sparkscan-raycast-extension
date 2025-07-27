@@ -41,10 +41,13 @@ export default function Command() {
 
   return (
     <List
+      isLoading={isLoading}
+      navigationTitle="Spark network statistics"
+      searchBarPlaceholder="Search by statistic name"
       searchBarAccessory={
         <List.Dropdown
-          tooltip="Grid Item Size"
-          storeValue
+          tooltip="Currently selected network"
+          value={network}
           onChange={(network) => {
             setNetwork(network as "MAINNET" | "REGTEST");
           }}
@@ -54,7 +57,7 @@ export default function Command() {
         </List.Dropdown>
       }
     >
-      {!isLoading && data && (
+      {data && (
         <>
           <List.Item
             title="Total Value Locked (USD)"
