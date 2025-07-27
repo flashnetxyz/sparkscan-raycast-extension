@@ -55,7 +55,7 @@
   "commands": [
     {
       "name": "statistics",
-      "title": "View statistics",
+      "title": "View Statistics",
       "description": "View statistics for the selected network",
       "mode": "view"
     },
