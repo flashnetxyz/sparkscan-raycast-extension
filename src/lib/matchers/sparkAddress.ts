@@ -1,4 +1,4 @@
-import { Match } from './_base';
+import { Match } from "./_base";
 
 export class SparkAddressMatch extends Match {
   public match() {
@@ -11,11 +11,11 @@ export class SparkAddressMatch extends Match {
       const sparkNetworkChar = lower.charAt(2);
 
       switch (sparkNetworkChar) {
-        case '1':
-          this.network = 'MAINNET';
+        case "1":
+          this.network = "MAINNET";
           break;
-        case 'r':
-          this.network = 'REGTEST';
+        case "r":
+          this.network = "REGTEST";
           break;
       }
 
@@ -25,7 +25,7 @@ export class SparkAddressMatch extends Match {
     return false;
   }
 
-  public get matchedNetwork(): 'MAINNET' | 'REGTEST' | null {
+  public get matchedNetwork(): "MAINNET" | "REGTEST" | null {
     return this.network;
   }
 

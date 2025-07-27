@@ -19,10 +19,16 @@ export function formatTimestamp(timestamp: string | undefined): string {
   }
 }
 
+/**
+ * Capitalizes the first letter of a string
+ */
 export function capitalize(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+/**
+ * Returns a human-readable label for a transaction type
+ */
 export const getTypeLabel = (type: string): string => {
   switch (type) {
     case "spark_to_spark":

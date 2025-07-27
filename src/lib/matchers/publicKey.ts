@@ -1,4 +1,4 @@
-import { Match } from './_base';
+import { Match } from "./_base";
 
 const PUBLIC_KEY_PATTERN = /^(02|03)[0-9a-fA-F]{64}$/;
 
@@ -15,7 +15,7 @@ export class PublicKeyMatch extends Match {
     return false;
   }
 
-  public get matchedNetwork(): 'MAINNET' | 'REGTEST' | null {
+  public get matchedNetwork(): "MAINNET" | "REGTEST" | null {
     return this.network;
   }
 

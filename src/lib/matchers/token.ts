@@ -1,4 +1,4 @@
-import { Match } from './_base';
+import { Match } from "./_base";
 
 export class TokenMatch extends Match {
   public match() {
@@ -6,16 +6,16 @@ export class TokenMatch extends Match {
     if (!trimmed) return false;
 
     const lower = trimmed.toLowerCase();
-    if (lower.startsWith('btkn') && trimmed.includes('1') && lower.length > 10) {
+    if (lower.startsWith("btkn") && trimmed.includes("1") && lower.length > 10) {
       this.$matched = true;
       const tokenNetworkChar = lower.charAt(4);
 
       switch (tokenNetworkChar) {
-        case '1':
-          this.network = 'MAINNET';
+        case "1":
+          this.network = "MAINNET";
           break;
-        case 'r':
-          this.network = 'REGTEST';
+        case "r":
+          this.network = "REGTEST";
           break;
       }
 
@@ -25,7 +25,7 @@ export class TokenMatch extends Match {
     return false;
   }
 
-  public get matchedNetwork(): 'MAINNET' | 'REGTEST' | null {
+  public get matchedNetwork(): "MAINNET" | "REGTEST" | null {
     return this.network;
   }
 

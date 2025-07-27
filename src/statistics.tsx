@@ -1,7 +1,8 @@
 import os from "node:os";
 import { useState } from "react";
-import { getPreferenceValues, Icon, List, environment } from "@raycast/api";
+import { getPreferenceValues, Icon, List, environment, ActionPanel, Action } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
+import { addRaycastUTM } from "./lib/url";
 
 interface Preferences {
   defaultNetwork: "MAINNET" | "REGTEST";
@@ -18,6 +19,14 @@ type Result =
   | {
       detail: unknown[];
     };
+
+const actions = (network: "MAINNET" | "REGTEST") => {
+  return (
+    <ActionPanel>
+      <Action.OpenInBrowser url={addRaycastUTM(`https://www.sparkscan.io/stats?network=${network.toLowerCase()}`)} />
+    </ActionPanel>
+  );
+};
 
 export default function Command() {
   const preferences = getPreferenceValues<Preferences>();
@@ -63,18 +72,22 @@ export default function Command() {
           <List.Item
             title="Total Value Locked (USD)"
             accessories={[{ text: `$${data.totalValueLockedUsd.toLocaleString()}`, icon: Icon.Coins }]}
+            actions={actions(network)}
           />
           <List.Item
             title="Active Accounts"
             accessories={[{ text: data.activeAccounts.toLocaleString(), icon: Icon.Person }]}
+            actions={actions(network)}
           />
           <List.Item
             title="Transactions (24h)"
             accessories={[{ text: data.transactions24h.toLocaleString(), icon: Icon.ArrowsExpand }]}
+            actions={actions(network)}
           />
           <List.Item
             title="Current BTC Price (USD)"
             accessories={[{ text: `$${data.currentBtcPriceUsd.toLocaleString()}`, icon: Icon.Coins }]}
+            actions={actions(network)}
           />
         </>
       )}

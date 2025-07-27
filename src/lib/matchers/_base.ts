@@ -1,7 +1,7 @@
 export abstract class Match {
   public readonly search: string;
   public network: "MAINNET" | "REGTEST";
-  
+
   protected $matched = false;
 
   public constructor(search: string, network: "MAINNET" | "REGTEST") {
