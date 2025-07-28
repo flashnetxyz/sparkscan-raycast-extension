@@ -83,6 +83,13 @@
       "title": "View Latest Transactions",
       "description": "View the latest transactions on the selected network",
       "mode": "view"
+    },
+    {
+      "name": "menu-bar-stats-and-status",
+      "title": "Stats & Status",
+      "description": "View statistics and status of the Spark network",
+      "mode": "menu-bar",
+      "interval": "10m"
     }
   ],
   "tools": [
