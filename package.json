@@ -97,6 +97,11 @@
       "name": "get-stats",
       "title": "Get Spark Network Statistics",
       "description": "Get the latest statistics for the Spark network"
+    },
+    {
+      "name": "get-status",
+      "title": "Get Sparkscan Status",
+      "description": "Get the status of the Sparkscan API"
     }
   ],
   "dependencies": {
